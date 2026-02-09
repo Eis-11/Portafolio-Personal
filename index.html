@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Personal</title>
+    <style>
+        /* RESET Y ESTILOS BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* VARIABLES DE COLOR */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #777;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* CONTENEDOR PRINCIPAL */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ENCABEZADO */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .title {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* SECCIONES GENERALES */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+        }
+        
+        /* SOBRE MÍ */
+        .about {
+            background-color: white;
+        }
+        
+        .about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            color: var(--text-color);
+        }
+        
+        /* HABILIDADES */
+        .skills {
+            background-color: #f8f9fa;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            list-style: none;
+        }
+        
+        .skills-list li {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .skills-list li:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--accent-color);
+        }
+        
+        /* PROYECTOS */
+        .projects {
+            background-color: white;
+        }
+        
+        .project-item {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .project-item:hover {
+            transform: translateX(10px);
+            border-left-color: var(--accent-color);
+        }
+        
+        .project-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .project-item p {
+            color: var(--text-light);
+        }
+        
+        /* FORMACIÓN ACADÉMICA */
+        .education {
+            background-color: #f8f9fa;
+        }
+        
+        .education-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .education-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .education-item p {
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        /* CONTACTO */
+        .contact {
+            background-color: white;
+        }
+        
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .contact-link i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* PIE DE PÁGINA */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .skills-list {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .contact-links {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .title {
+                font-size: 1.1rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+        
+        /* ICONOS (simulados con texto) */
+        .icon {
+            display: inline-block;
+            width: 24px;
+            text-align: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Usamos una imagen de placeholder ya que no tenemos foto.jpg -->
+            <img class="profile-img" src="C:\Users\Alfredo\Pictures\Screenshots\Perfil1.webp" alt="Foto de perfil">
+            <h1>Alfredo Rocha Molina</h1>
+            <p class="title">Estudiante de Ingeniería en Sistemas Computacionales</p>
+        </div>
+    </header>
+    
+    <section class="about">
+        <div class="container">
+            <h2>Sobre mí</h2>
+            <p>
+                Soy estudiante de Ingeniería en Sistemas Computacionales con interés en el
+                desarrollo de software, bases de datos y tecnologías de la información.
+            </p>
+
+
+                <br>
+
+                <h3>Datos personales</h3>
+                <p><strong>Nombre:</strong> Alfredo Rocha Molina</p>
+                <p><strong>Edad:</strong> 21 años</p>
+                <p><strong>Carrera:</strong> Ingeniería en Sistemas Computacionales</p>
+                <p><strong>Institución:</strong> Instituto Tecnológico Superior Zacatecas Norte</p>
+                <p><strong>Ubicación:</strong> Zacatecas, México</p>
+
+        </div>
+    </section>
+    
+    <section class="skills">
+        <div class="container">
+            <h2>Habilidades</h2>
+            <ul class="skills-list">
+                <li><span class="icon">⚡</span> HTML</li>
+                <li><span class="icon">🎨</span> CSS</li>
+                <li><span class="icon">🚀</span> JavaScript</li>
+                <li><span class="icon">🖥️</span> C#</li>
+                <li><span class="icon">🗃️</span> MySQL</li>
+                <li><span class="icon">☕</span> Java</li>
+                <li><span class="icon">📂</span> Git y GitHub</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="projects">
+        <div class="container">
+            <h2>Proyectos</h2>
+            
+            <div class="project-item">
+                <h3>Sistema de Reservaciones</h3>
+                <p>
+                    Aplicación web para gestionar habitaciones, fechas y datos del huésped.
+                    Desarrollada con PHP, MySQL y JavaScript. Incluye panel de administración,
+                    sistema de búsqueda y reportes en tiempo real.
+                </p>
+            </div>
+            
+            <div class="project-item">
+                <h3>Sistema de Inventario</h3>
+                <p>
+                    Sistema para el control de productos y stock con alertas de bajo inventario.
+                    Implementado con Java y MySQL, incluye funciones de importación/exportación
+                    de datos y generación de informes.
+                </p>
+            </div>
+            
+            <div class="project-item">
+                <h3>CRUD con Base de Datos</h3>
+                <p>
+                    Aplicación CRUD (Create, Read, Update, Delete) completa usando base de datos MySQL
+                    y C# con interfaz responsive. Incluye validación de datos, paginación y búsqueda.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="education">
+        <div class="container">
+            <h2>Formación Académica</h2>
+            <div class="education-item">
+                <h3>Ingeniería en Sistemas Computacionales</h3>
+                <p><strong>Institución:</strong> Instituto Tecnologico Superior Zacatecas Norte</p>
+                <p><strong>Periodo:</strong> 2022 - Actualidad</p>
+                <p><strong>Estado:</strong> En curso (80% completado)</p>
+            </div>
+
+            <br>
+
+            <div class="education-item">
+                <h3>Centro de Bachillerato Tecnológico agropecuario No. 189</h3>
+                <p><strong>Institución:</strong> CBTa No.189</p>
+                <p><strong>Periodo:</strong> 2019 - 2022</p>
+                <p><strong>Estado:</strong> Completado</p>
+            </div>
+
+        </div>
+    </section>
+    
+    <section class="contact">
+    <div class="container">
+        <h2>Contacto</h2>
+        <div class="contact-links">
+            <a href="mailto:alfredorocha0911@gmail.com" class="contact-link">
+                <span class="icon">✉️</span> alfredorocha0911@gmail.com
+            </a>
+
+            <a href="https://github.com/Eis-11" target="_blank" class="contact-link">
+                <span class="icon">🐙</span> GitHub: Eis-11
+            </a>
+
+            <a href="https://www.instagram.com/alfred0.r/" target="_blank" class="contact-link">
+                <span class="icon">📸</span> Instagram: @alfred0.r
+            </a>
+
+            <a href="https://www.facebook.com/AlfredoRocha" target="_blank" class="contact-link">
+               <span class="icon">📘</span> Facebook: Alfredo Rocha
+            </a>
+
+            <a href="tel:+524981002046" class="contact-link">
+                <span class="icon">📱</span> Teléfono: +52 498 100 2046
+            </a>
+        </div>
+    </div>
+</section>
+
+    
+    <footer>
+        <div class="container">
+            <p>© 2026 - Alfredo Rocha | Portafolio Personal</p>
+            <p>Desarrollado con HTML y CSS</p>
+        </div>
+    </footer>
+</body>
+</html>
